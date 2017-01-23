@@ -175,6 +175,7 @@ static char kInstalledConstraintsKey;
             NSMutableArray *children = NSMutableArray.new;
             for (id attr in attribute) {
                 MASViewConstraint *viewConstraint = [self copy];
+                viewConstraint.layoutRelation = relation;
                 viewConstraint.secondViewAttribute = attr;
                 [children addObject:viewConstraint];
             }
@@ -251,6 +252,10 @@ static char kInstalledConstraintsKey;
         default:
             break;
     }
+}
+
+- (void)setInset:(CGFloat)inset {
+    [self setInsets:(MASEdgeInsets){.top = inset, .left = inset, .bottom = inset, .right = inset}];
 }
 
 - (void)setOffset:(CGFloat)offset {
